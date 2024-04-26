@@ -37,8 +37,24 @@ def ajouter_livre(titre, auteur, quantite=1):
 # Fonction pour emprunter un livre
 def emprunter_livre():
     afficher_livres()
-    
-            # print(f'sama men {value['auteur']} ')
+    try :
+        index = int(input("Entrez l'index du livre à emprunter : "))
+    except ValueError:
+        print("Veuillez entrer un nombre.")
+        return
+    livre_trouve = False
+    for titre, info in livres.items():
+        if info["quantite"] - info["empruntes"] > 0:
+            if index == 1:
+                if livres[titre]["quantite"] > livres[titre]["empruntes"]:
+                    livres[titre]["empruntes"] += 1
+                    print(f"Vous avez emprunté le livre '{titre}'.")
+                    livre_trouve = True
+                    break
+            index -= 1
+        if not livre_trouve:
+            print(f"Le livre avec l'index {index + 1} n'est pas disponible ou tous les exemplaires sont déjà empruntés.")
+          
 
 def emprunter_livre():
     livres.afficher_livres()
@@ -57,20 +73,6 @@ def emprunter_livre():
         print(f"Le livre avec l'index {index + 1} n'est pas disponible ou tous les exemplaires sont déjà empruntés.")
 
         
-# Fonction pour emprunter un livre
-def emprunter_livre():
-    afficher_livres()
-    index = int(input("Entrez l'index du livre à emprunter : "))
-    for i, (titre, info) in enumerate(livres.items(), start=1):
-        if info["quantite"] - info["empruntes"] > 0:
-            if index == i:
-                if livres[titre]["quantite"] > livres[titre]["empruntes"]:
-                    livres[titre]["empruntes"] += 1
-                    print(f"Vous avez emprunté le livre '{titre}'.")
-                    break
-    else:
-        print(f"Le livre avec l'index {index} n'est pas disponible ou tous les exemplaires sont déjà empruntés.")
-
 # Fonction pour rendre un livre
 def rendre_livre():
     afficher_livres()
@@ -108,18 +110,25 @@ def livre_menu():
         choix = input("Entrez votre choix (1-5) : ")
 
         if choix == "1":
-            titre = input("Entrez le titre du livre : ")
-            auteur = input("Entrez l'auteur du livre : ")
-
             while True:
-                quantite_str = input("Entrez la quantité d'exemplaires : ")
-                if quantite_str.isdigit() and int(quantite_str) > 0:
-                    quantite = int(quantite_str)
-                    print(f"Vous avez entré la quantité : {quantite}")
+                titre = input("Entrez le titre du livre : ")
+                if not titre:
+                    print("Vous pouvez entre titre de la livre. Program sont terminer.")
+                    break
+                auteur = input("Entrez l'auteur du livre : ")
+                if not auteur:
+                    print("Vous pouvez entrer le nom d'auteur. Program sont terminer")
                     break
                 else:
-                    print("Veuillez entrer un nombre entier positif pour la quantité. Réessayez.")
-            ajouter_livre(titre, auteur, quantite)
+                    while True:
+                        quantite = input("Entrez la quantité du livre : ")
+                        if quantite.isdigit() and int(quantite) > 0:
+                            print(f"Vous avez ajouter quantité des livres : {quantite}")
+                            break
+                        else:
+                            print("Veuillez entrer un nombre positif. Veuillez reessayer!")
+                        ajouter_livre(titre, auteur, quantite)
+                        break
         elif choix == "2":
             emprunter_livre()          
         elif choix == "3":
