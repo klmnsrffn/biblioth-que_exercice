@@ -11,11 +11,38 @@ def admin_menu():
         print("4. Quitter")
         choice = input("Votre choix : ")
         if choice == "1":
-            username = input("Nom d'utilisateur : ")
-            password = input("Mot de passe : ")
-            admin = input("Administrateur ? (o/n) ").lower() == "o"
-            connecter.create_user(username, password, admin)
-            print(f"Utilisateur '{username}' créé avec succès.")
+            while True:
+                username = input("Nom d'utilisateur : ")
+                if not username:
+                    print("Vous pouvez entrer nom d'utilisateur. Program sont terminer")
+                    break
+                password = input("Mot de passe : ")
+                if not password:
+                    print("Vous pouvez entrer mot de passe. Program sont terminer")
+                    break
+                if ' 'in username:
+                    print("Le nom d'utilisateur ne peut pas contenir des espaces.")
+                elif ' ' in password:
+                    print("Le mot de passe ne peut pas contenir des espaces.")
+                    break
+            if username and password:
+                admin = input("Administrateur ? (o/n) ").lower()
+                while True:
+                    if admin == "o":
+                        admin = True
+                        connecter.create_user(username, password, admin)
+                        print(f"Utilisateur '{username}' créé avec succès.")
+                        break
+                    elif admin == "n":
+                        admin = False
+                        connecter.create_user(username, password, admin)
+                        print(f"Utilisateur '{username}' créé avec succès.")
+                        break
+                    else:
+                        print("Choix invalide. Veuillez réessayer.")
+                        admin = input("Administrateur? (o/n)").lower()
+            else:
+                print("Choix invalide. Veuillez réessayer.")
         elif choice == "2":
             username = input("Nom d'utilisateur à supprimer : ")
             connecter.delete_user(username)
