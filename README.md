@@ -1,4 +1,4 @@
-##Vue d'ensemble
+## Vue d'ensemble
 Ce projet est un système de gestion de bibliothèque simple. Les administrateurs et les utilisateurs réguliers peuvent se connecter via la même page de connexion, mais ils seront dirigés vers différentes fonctionnalités en fonction de leur type de compte (administrateur ou utilisateur régulier).
 
 ##Fonctionnalités pour les administrateurs :
@@ -7,17 +7,17 @@ Supprimer des comptes existants
 Ajouter de nouveaux livres à la bibliothèque
 Utiliser les fonctionnalités d'emprunt et de retour de livres
 
-##Fonctionnalités pour les utilisateurs réguliers :
+## Fonctionnalités pour les utilisateurs réguliers :
 Emprunter des livres de la bibliothèque
 Retourner des livres empruntés
 
-##Comment ça fonctionne ?
+## Comment ça fonctionne ?
 Lors de l'accès au système, les utilisateurs seront invités à se connecter.
 Après une connexion réussie, les administrateurs auront accès aux fonctionnalités administratives mentionnées ci-dessus, tandis que les utilisateurs réguliers n'auront accès qu'aux fonctionnalités d'emprunt et de retour de livres.
 Les administrateurs peuvent gérer les comptes, ajouter de nouveaux livres à la bibliothèque et gérer les opérations d'emprunt et de retour de livres.
 Les utilisateurs réguliers peuvent parcourir les livres disponibles et les emprunter ou les retourner selon les besoins.
 
-##Fonctionnalités pour les administrateurs
+## Fonctionnalités pour les administrateurs
 Après s'être connectés, les administrateurs seront invités à choisir entre la gestion des comptes ou la gestion des livres de la bibliothèque.
 Gérer les comptes
 
